@@ -1,0 +1,50 @@
+.mymasonrygrid {
+  display: flex;
+  width: auto;
+  gap: 15px;
+  width: 85%;
+  margin-inline: auto;
+}
+.link {
+  overflow: hidden;
+  position: relative;
+  display: block;
+  border-radius: 15px;
+  margin-top: 15px;
+}
+.link_image {
+}
+.link_box {
+  display: contents;
+}
+.link_title {
+  z-index: 2;
+  overflow: hidden;
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  max-width: calc(100% - 10px); /* 親要素に合わせた幅に調整 */
+  padding-block: 3px;
+  padding-inline: 5px;
+  border-radius: 8px;
+  font-weight: normal;
+  font-size: 14px;
+  background: #00000080;
+  text-overflow: ellipsis; /* 三点リーダーを表示 */
+  white-space: nowrap;
+}
+.link_date {
+  z-index: 2;
+  overflow: hidden;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  max-width: calc(100% - 10px); /* 親要素に合わせた幅に調整 */
+  padding-block: 3px;
+  padding-inline: 6px;
+  border-radius: 8px;
+  font-size: 10px;
+  background: #00000080;
+  text-overflow: ellipsis; /* 三点リーダーを表示 */
+  white-space: nowrap;
+}
