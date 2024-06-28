@@ -5,10 +5,12 @@ import Image from "next/image";
 import classNames from "classnames";
 
 import styles from "./index.module.css";
+import IconImage from "@/components/utils/IconImage";
 
 export default function Header({ user }) {
   const [isActive, setIsActive] = useState(false);
   const [isActiveNav, setIsActiveNav] = useState(false);
+  const [isActiveNavSubList, setIsActiveNavSubList] = useState(false);
 
   const handleClick = () => {
     setIsActive(!isActive);
@@ -16,6 +18,10 @@ export default function Header({ user }) {
 
   const handleClickNav = () => {
     setIsActiveNav(!isActiveNav);
+  };
+
+  const handleClickNavSubList = () => {
+    setIsActiveNavSubList(!isActiveNavSubList);
   };
 
   return (
@@ -31,46 +37,70 @@ export default function Header({ user }) {
             [styles.active]: isActive,
           })}
         >
-          <ul className={styles.header_list}>
-            <li className={styles.header_item}>
-              <Link href="/form" className={styles.header_itemLink}>
+          <ul className={styles.header_navList}>
+            <li className={styles.header_navItem}>
+              <p
+                className={classNames(styles.header_navItemText, {
+                  [styles.active]: isActiveNavSubList,
+                })}
+                onClick={handleClickNavSubList}
+              >
+                <span className={styles.header_navItemLink}>CATEGORIES</span>
+              </p>
+              <ul
+                className={styles.header_navSubList}
+                className={classNames(styles.header_navSubList, {
+                  [styles.active]: isActiveNavSubList,
+                })}
+              >
+                <li className={styles.header_navSubItem}>
+                  <Link href="/" className={styles.header_navItemLink}>
+                    POPULAR
+                  </Link>
+                </li>
+                <li className={styles.header_navSubItem}>
+                  <Link href="/" className={styles.header_navItemLink}>
+                    FEATURE
+                  </Link>
+                </li>
+                <li className={styles.header_navSubItem}>
+                  <Link href="/" className={styles.header_navItemLink}>
+                    LATEST
+                  </Link>
+                </li>
+              </ul>
+            </li>
+            <li className={styles.header_navItem}>
+              <Link href="/form" className={styles.header_navItemLink}>
                 UPLOAD
               </Link>
             </li>
-            <li className={styles.header_item}>
-              <p className={styles.header_item}>CATEGORIES</p>
+            <li className={styles.header_navItem}>
+              <Link href="/" className={styles.header_navItemLink}>
+                HELP
+              </Link>
             </li>
-            <li className={styles.header_item}>HELP</li>
           </ul>
 
           <ul className={styles.header_accountList}>
             <li className={styles.header_accountItem}>
-              <p className={styles.header_accountItemImgBox}>
-                <Image
-                  src="/icon/notifications.png"
-                  alt="My Image"
-                  priority
-                  fill
-                  className={styles.header_accountItemImg}
+              <p className={styles.header_accountImg}>
+                <IconImage
+                  imageSrc="/icon/notifications.png"
+                  imageAlt="My Image"
                 />
               </p>
             </li>
             <li className={styles.header_accountItem}>
               <Link
                 href={user ? `/user/${user.userid}` : "/auth/login"}
-                className={styles.header_accountItemBox}
+                className={styles.header_accountBox}
               >
-                <p className={styles.header_accountItemText}>
+                <p className={styles.header_accountUsername}>
                   {user ? user.username : "LOGIN"}
                 </p>
-                <p className={styles.header_accountItemImgBox}>
-                  <Image
-                    src="/icon/user.png"
-                    alt="My Image"
-                    priority
-                    fill
-                    className={styles.header_accountItemImg}
-                  />
+                <p className={styles.header_accountImg}>
+                  <IconImage imageSrc="/icon/user.png" imageAlt="My Image" />
                 </p>
               </Link>
             </li>
@@ -78,13 +108,7 @@ export default function Header({ user }) {
         </nav>
 
         <div className={styles.header_searchBtn} onClick={handleClickNav}>
-          <Image
-            src="/icon/search.png"
-            alt="My Image"
-            priority
-            fill
-            className={styles.header_searchBtnImg}
-          />
+          <IconImage imageSrc="/icon/search.png" imageAlt="My Image" />
         </div>
 
         <div

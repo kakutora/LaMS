@@ -1,4 +1,5 @@
 .header {
+  z-index: 1000;
   position: relative;
   display: flex;
   align-items: center;
@@ -9,6 +10,7 @@
   color: #0e0e0e;
   background: #eeeeee;
   border-radius: 0 0 15px 15px;
+  user-select: none;
 }
 
 .header_title {
@@ -31,7 +33,7 @@
   letter-spacing: 0.05rem;
 }
 
-.header_list {
+.header_navList {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -40,17 +42,86 @@
   height: 100%;
 }
 
-.header_item {
+.header_navItem {
   color: #0e0e0e;
 }
 
-.header_itemLink {
+.header_navItemText {
+  color: #0e0e0e;
+}
+
+.header_navItemText:nth-of-type(1) {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+}
+.header_navItemText:nth-of-type(1)::after {
+  content: "";
+  transform: translateY(1px) rotate(45deg);
+  width: 7px;
+  aspect-ratio: 1/1;
+  border-top: 1px solid #0e0e0e;
+  border-right: 1px solid #0e0e0e;
+  transition: all 0.3s;
+}
+.header_navItemText:nth-of-type(1).active::after {
+  transform: translateY(0px) rotate(135deg);
+}
+
+.header_navSubList {
+  z-index: -50;
+  position: fixed;
+  top: -200px;
+  left: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: start;
+  background: #eee;
+  background: red;
+  border-radius: 15px;
+  padding-inline: 30px;
+  padding-block: 30px;
+  transition: top 0.3s ease-in-out;
+}
+
+.header_navSubList.active {
+  display: flex;
+  top: 80px;
+}
+
+.header_navSubItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  width: 100%;
+  color: #0e0e0e;
+}
+
+.header_navSubItem::after {
+  content: "";
+  transform: translateY(1px) rotate(45deg);
+  width: 7px;
+  aspect-ratio: 1/1;
+  border-top: 1px solid #0e0e0e;
+  border-right: 1px solid #0e0e0e;
+  transition: all 0.3s;
+}
+
+.header_navSubItem:hover::after {
+  transform: translateY(0) rotate(135deg);
+}
+
+.header_navItemLink {
   position: relative;
   color: #0e0e0e;
   text-decoration: none;
 }
 
-.header_itemLink::before {
+.header_navItemLink::before {
   content: "";
   position: absolute;
   left: 0;
@@ -65,7 +136,7 @@
   transition: transform 0.3s;
 }
 
-.header_itemLink:hover::before {
+.header_navItemLink:hover::before {
   transform-origin: left top;
   transform: scale(1, 1);
 }
@@ -79,26 +150,23 @@
   margin-right: 30px;
 }
 
-.header_accountItemBox {
+.header_accountItem {
+}
+
+.header_accountBox {
   display: flex;
   align-items: center;
   gap: 5px;
   height: 100%;
 }
 
-.header_accountItemText {
+.header_accountUsername {
   margin-bottom: 6px;
   color: #0e0e0e;
 }
 
-.header_accountItemImgBox {
+.header_accountImg {
   width: 30px;
-}
-
-.header_accountItemImg {
-  object-fit: contain;
-  position: relative !important;
-  width: auto !important;
 }
 
 .header_searchBox {
@@ -205,13 +273,14 @@
     position: fixed;
     bottom: 0;
     right: -100%;
-    display: block;
+    display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 0;
-    width: 100%;
-    height: 100vh;
+    width: 430px;
+    height: 100dvh;
     background: #eee;
-    border-radius: 15px;
+    border-radius: 0 0 15px 15px;
     margin: 0;
     transition: all 0.3s;
   }
@@ -220,12 +289,63 @@
     transition: all 0.3s;
   }
 
-  .header_list {
+  .header_navList {
     flex-direction: column;
+    align-items: start;
+    gap: 25px;
+    height: initial;
+    margin: 0 15px;
+    margin-top: 100px;
+    font-size: 1rem;
+  }
+
+  .header_navItem {
+    position: relative;
+    width: 100%;
+  }
+
+  .header_navItem::before {
+    position: absolute;
+    content: "";
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%) rotate(45deg);
+    width: 10px;
+    height: 10px;
+    border-top: 1px solid #0e0e0e;
+    border-right: 1px solid #0e0e0e;
+  }
+
+  .header_navItem:nth-of-type(1)::before {
+    transform: translateY(-50%) rotate(135deg);
+  }
+
+  .header_accountList {
+    align-items: start;
+    width: 100%;
     gap: 0;
     height: initial;
     margin: 0;
-    margin-top: 60px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+  }
+
+  .header_accountItem {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+  }
+
+  .header_accountBox {
+    display: flex;
+    align-items: initial;
+    gap: 5px;
+    height: 100%;
+  }
+
+  .header_accountUsername {
+    margin-top: 5px;
   }
 
   .header_searchBox {
@@ -255,21 +375,14 @@
     margin-right: 15px;
   }
 
-  .header_searchBtnImg {
-    object-fit: contain;
-    position: relative !important;
-    width: auto !important;
-  }
-
-  .header_accountList {
-    flex-direction: column;
-    gap: 0;
-    height: initial;
-    margin: 0;
-  }
-
   .header_navBtn,
   .header_navBtn span {
     display: inline-block;
+  }
+}
+
+@media (max-width: 430px) {
+  .header_nav {
+    width: 100%;
   }
 }
