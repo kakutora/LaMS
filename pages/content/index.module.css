@@ -1,7 +1,19 @@
 .img {
 }
+.test {
+  position: relative;
+  width: 500px;
+}
 .image {
   object-fit: contain;
   position: relative !important;
   width: auto !important;
+}
+.testbox {
+  width: 50px;
+  aspect-ratio: 1/1;
+  background: red;
+}
+.testbox:hover {
+  background: blue;
 }

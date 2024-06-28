@@ -1,0 +1,65 @@
+.loginForm {
+  width: 90%;
+  max-width: 600px;
+  margin-top: 50px;
+  margin-inline: auto;
+  background: rgba(119, 119, 119, 0.237);
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+}
+.loginForm__title {
+  margin-top: 15px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.loginForm__form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+
+  margin-bottom: 25px;
+  margin-inline: auto;
+}
+.loginForm__input {
+  display: block;
+  width: 80%;
+  height: 50px;
+  margin-inline: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 15px;
+  background: transparent;
+  color: #e0e0e0;
+}
+.loginForm__input::placeholder {
+  color: #e0e0e0;
+}
+.loginForm__btn {
+  display: block;
+  width: 80%;
+  max-width: 200px;
+  margin-top: 35px;
+  margin-inline: auto;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: white;
+  color: #0e0e0e;
+  transition: opacity 0.2s;
+}
+.loginForm__btn:hover {
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+.signup {
+  margin-top: 15px;
+  text-align: center;
+}
+.signup__link {
+}
+.signup__link:hover {
+  opacity: 0.7;
+}

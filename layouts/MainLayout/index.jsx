@@ -1,9 +1,9 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-export default function RootLayout({ children }) {
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+export default function RootLayout({ children, user }) {
   return (
     <>
-      <Header />
+      <Header user={user} />
       <main>{children}</main>
       <Footer />
     </>
